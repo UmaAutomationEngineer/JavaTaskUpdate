@@ -1,0 +1,10 @@
+package epam.tasks.designpattern.strategy;
+
+public class StrategyTask {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
