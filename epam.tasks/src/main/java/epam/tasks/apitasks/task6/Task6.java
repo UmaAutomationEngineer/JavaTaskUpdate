@@ -17,13 +17,13 @@ public class Task6 {
 	
 	@Test
     public void task1() {
-        String userName = "sikkanderabdul_khader@epam.com";
+        String userName = "umamaheswari_rajamanickam@epam.com";
         String token = "ATATT3xFfGF0ougeRf5DH5kH5oHS0n6SKvDbWfNlTpz_5kM57zJpHyLrOYIprC2pNOm9qNHH1K_t3a9PiyUCdK0sZeVyS9UsginLkpeq3lIBOf8bTQgRR0D-_PxR-pS_M9hV761Em-GNqxvGbPEpnSoT25-5nhSE4yrSmNWyhHuIMR8Fzm-97LQ=1618EDDC";
         String encodeCredentials = new String(Base64.encodeBase64((userName + ":" + token).getBytes()));
 
         String AUTHORIZATION_HEADER = "Authorization";
      // Creating an issue
-        RestAssured.baseURI = "https://sikkander.atlassian.net";
+        RestAssured.baseURI = "https://umamaheswari.atlassian.net";
         RestAssured.basePath = "/rest/api/3/issue";
         Response response = RestAssured.given()
                 .header(AUTHORIZATION_HEADER, "Basic " + encodeCredentials)
@@ -46,7 +46,7 @@ public class Task6 {
                 .accept(ContentType.JSON)
                 .body(JiraPayload.bodyToUpdateIssue)
                 .when()
-                .put(idOfNewlyCreatedIssue,"https://sikkander.atlassian.net/rest/api/3/issue/{idOfNewlyCreatedIssue}");
+                .put(idOfNewlyCreatedIssue,"https://umamaheswari.atlassian.net/rest/api/3/issue/{idOfNewlyCreatedIssue}");
         updateResponse.then().assertThat().statusCode(lessThan(300));
         System.out.printf("Bug with id '%s' got updated successfully.\n", idOfNewlyCreatedIssue);
         
@@ -56,7 +56,7 @@ public class Task6 {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .when()
-                .get("https://sikkander.atlassian.net/rest/api/3/search");
+                .get("https://umamaheswari.atlassian.net/rest/api/3/search");
         List<String> idsList = searchResponse.jsonPath().getList("issues.id");
         System.out.println("All bugs found in search > " + idsList);
         Assert.assertTrue( idsList.contains(idOfNewlyCreatedIssue),"Newly created Bug id is not searchable");
@@ -76,7 +76,7 @@ public class Task6 {
                         .contentType(ContentType.JSON)
                         .accept(ContentType.JSON)
                         .when()
-                        .delete("https://sikkander.atlassian.net/rest/api/3/issue/{idOfNewlyCreatedIssue}", idOfNewlyCreatedIssue);
+                        .delete("https://umamaheswari.atlassian.net/rest/api/3/issue/{idOfNewlyCreatedIssue}", idOfNewlyCreatedIssue);
                 deleteResponse.then().assertThat().statusCode(lessThan(300));
                 System.out.printf("Bug with id '%s' got deleted.", idOfNewlyCreatedIssue);
 
